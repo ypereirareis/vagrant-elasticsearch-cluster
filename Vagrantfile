@@ -7,10 +7,6 @@ Vagrant.configure("2") do |config|
   config.vm.box = "elasticsearch-cluster"
   config.vm.synced_folder ".", "/vagrant", :id => "vagrant-root", :mount_options => ["dmode=777", "fmode=777"]
 
-  config.vm.provision "shell" do |sh|
-    sh.path = "./scripts/start-node.sh"
-  end
-
   config.vm.provider "virtualbox" do |vbox|
     vbox.customize ["modifyvm", :id, "--memory", 512]
     vbox.customize ["modifyvm", :id, "--cpus", 1]
