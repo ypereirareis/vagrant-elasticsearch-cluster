@@ -3,11 +3,15 @@ vagrant-elasticsearch-cluster
 
 Create an ElasticSearch cluster with a single bash command
 
+**Program and versions information**
+
 | program         | version       |
 | --------------- | ------------- |
 | ElasticSearch   | 1.0.1         |
 | Java            | openjdk-7-jre |
 
+
+**Cluster simple configuration**
 
 | Configuration      |  Value(s)                                            |
 | ------------------ | ---------------------------------------------------- |
