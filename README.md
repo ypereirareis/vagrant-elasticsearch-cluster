@@ -7,7 +7,7 @@ Create an ElasticSearch cluster with a simple single bash command
 Installation : how to get these file on your machine
 --
 
-Requirements : what you must have on your machine to run the cluster
+Requirements : needed to run the cluster
 --
 
 * VirtualBox (last)
