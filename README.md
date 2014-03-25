@@ -9,7 +9,7 @@ Create an ElasticSearch cluster with a single bash command
 | Java            | openjdk-7-jre |
 
 
-|                    |                                                      |
+| Configuration      |  Value(s)                                            |
 | ------------------ | ---------------------------------------------------- |
 | Cluster name       | elasticsearch-cluster-test                           |
 | Nodes names        | thor, zeus, isis, baal, shifu                        |
