@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box_url = "debian-wheezy-chef-elasticsearch-amd64-vbox.box"
+  config.vm.box_url = "ypereirareis/debian-elasticsearch-amd64"
   config.vm.box = "elasticsearch-cluster"
   config.vm.synced_folder ".", "/vagrant", :id => "vagrant-root", :mount_options => ["dmode=777", "fmode=777"]
 

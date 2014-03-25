@@ -83,7 +83,7 @@ VM_NAME=$1
 screen -d -m /home/vagrant/elasticsearch-1.0.1/bin/elasticsearch -Des.config=/vagrant/conf/$VM_NAME/elasticsearch.yml
 ```
 
-Once the cluster is launched go to [http://10.0.0.11:9200](http://10.0.0.11:9200)  
+Once the cluster is launched go to [http://10.0.0.11:9200](http://10.0.0.11:9200)
 Plugins URLs :
 
 * [http://10.0.0.11:9200/_plugin/marvel](http://10.0.0.11:9200/_plugin/marvel)
