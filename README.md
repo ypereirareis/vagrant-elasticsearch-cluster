@@ -3,6 +3,19 @@ vagrant-elasticsearch-cluster
 
 Create an ElasticSearch cluster with a single bash command
 
+| program         | version       |
+| --------------- | ------------- |
+| ElasticSearch   | 1.0.1         |
+| Java            | openjdk-7-jre |
+
+
+|                    |                                                      |
+| ------------------ | ---------------------------------------------------- |
+| Cluster name       | elasticsearch-cluster-test                           |
+| Nodes names        | thor, zeus, isis, baal, shifu                        |
+| VM names           | vm1, vm2, vm3, vm4, vm5                              |
+
+
 Installation
 --
 
