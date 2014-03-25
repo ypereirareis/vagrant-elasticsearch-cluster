@@ -116,3 +116,11 @@ Actually execute a loop of "vagrant destroy" command.
 ```
 
 Actually execute a loop of "vagrant box remove" command.
+
+
+## Vagrant
+
+You can use every vagrant command to manage your cluster and VMs.
+This project is simply made to launch a working elasticsearch cluster with a single command.
+
+Use it to tests every configuration/queries you want (split brain, unicast, recovery, indexing, sharding)
