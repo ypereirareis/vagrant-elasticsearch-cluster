@@ -20,16 +20,16 @@ Create an ElasticSearch cluster with a single bash command
 | VM names           | vm1, vm2, vm3, vm4, vm5                              |
 
 
-Installation
+1.Installation
 --
 
 git clone git@github.com:ypereirareis/vagrant-elasticsearch-cluster.git
 
-Requirements
+2.Requirements
 --
 
 * VirtualBox (last version)
-* Vagrant (last version)
+* Vagrant (>=1.5)
 
 
 **WARNING**
@@ -38,14 +38,14 @@ You'll need enough RAM to run VMs in your cluster.
 Each new VM launched within your cluster will have 512M of RAM allocated.  
 You can change this configuration in the Vagrantfile once cloned.  
 
-Configure your cluster
+3.Configure your cluster
 --
 
 If you need or want to change the default working configuration of your cluster,
 you can do it editing elasticsearch.yml files in conf/vmX/elasticsearch.yml.
 Each node configuration is shared with VM thanks to this "conf" directory.
 
-ElasticSearch plugins installed inside the base box
+4.ElasticSearch plugins inside the base box
 --
 
 * elasticsearch-head - [https://github.com/mobz/elasticsearch-head](https://github.com/mobz/elasticsearch-head)
@@ -54,7 +54,7 @@ ElasticSearch plugins installed inside the base box
 * Marvel - [http://www.elasticsearch.org/overview/marvel/](http://www.elasticsearch.org/overview/marvel/)
 * ElasticsearchHQ - [http://www.elastichq.org/](http://www.elastichq.org/)
 
-How to run a new ElasticSearch cluster
+5.How to run a new ElasticSearch cluster
 --
 
 **Important**
@@ -118,13 +118,23 @@ Actually execute a loop of "vagrant destroy" command.
 Actually execute a loop of "vagrant box remove" command.
 
 
-## Vagrant
+6.Vagrant
+--
 
 You can use every vagrant command to manage your cluster and VMs.
 This project is simply made to launch a working elasticsearch cluster with a single command, using vagrant/virtualbox virtaul machines.
 
 Use it to test every configuration/queries you want (split brain, unicast, recovery, indexing, sharding)
 
-## Important
+7.Important
+--
 
 Do forks and MRs !!!!
+
+8.TODO
+--
+
+* Adding data to test/execute queries (fuzzy, percolation, aggregations,...)
+* Adding extra plugins or applications (redis, logstash, kibana, ...)
+* Adding some configurations to illustrate split brain, unicast discovery, load balancing, snapshots,...
+* Sharing log configuration file just like elasticsearch.yml
