@@ -1,0 +1,11 @@
+#!/bin/bash
+
+INSTANCE=$(screen -li | grep elastic | sed 's/\s/ /g')
+
+if [ -n "$INSTANCE" ]
+then
+    echo "Already running: $INSTANCE"
+else
+    screen -S elastic -d -m elasticsearch -Des.config=/vagrant/conf/$VM_NAME/elasticsearch.yml
+    echo "Started: $(screen -li | grep elastic | sed 's/\s/ /g')"
+fi

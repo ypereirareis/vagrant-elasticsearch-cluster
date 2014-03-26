@@ -2,6 +2,21 @@
 # vi: set ft=ruby :
 require 'erb'
 
+script = <<SCRIPT
+if ! cat /etc/profile | grep -q vagrant
+then
+    cat <<EOT >> /etc/profile
+
+export VM_NAME=%s
+export PATH=/vagrant/scripts:/home/vagrant/elasticsearch-1.0.1/bin:\\$PATH
+EOT
+
+    source /etc/profile
+fi
+
+screen -li | grep -q elastic || node-start
+SCRIPT
+
 module Vagrant
     module ElastiSearchCluster
         class Util

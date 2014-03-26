@@ -1,3 +1,0 @@
-
-VM_NAME=$1
-screen -S elastic -d -m /home/vagrant/elasticsearch-1.0.1/bin/elasticsearch -Des.config=/vagrant/conf/$VM_NAME/elasticsearch.yml

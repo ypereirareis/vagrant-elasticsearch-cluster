@@ -1,0 +1,4 @@
+#!/bin/bash
+
+node-stop
+node-start

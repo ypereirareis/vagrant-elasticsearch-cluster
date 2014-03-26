@@ -36,8 +36,8 @@ git clone git@github.com:ypereirareis/vagrant-elasticsearch-cluster.git
 **WARNING**
 
 You'll need enough RAM to run VMs in your cluster.
-Each new VM launched within your cluster will have 512M of RAM allocated.  
-You can change this configuration in the Vagrantfile once cloned.  
+Each new VM launched within your cluster will have 512M of RAM allocated.
+You can change this configuration in the Vagrantfile once cloned.
 
 3.Configure your cluster
 --
@@ -141,15 +141,17 @@ vagrant box remove ypereirareis/debian-elasticsearch-amd64
 This will remove your local copy of the vagrant base-box.
 
 
-**Debug ElasticSearch instances**
+**Managing ElasticSearch instances**
 
-Each VM has its own ElasticSearch instance running in a `screen` session named `elastic`. You can reattach this session at will using:
+Each VM has its own ElasticSearch instance running in a `screen` session named `elastic`.
+Once connected to the VM, you can manage this instance with the following commands:
 
-```sh
-vagrant ssh vm1
+* `node-start`: starts the ElasticSearch instance
+* `node-stop`: stops the ElasticSearch instance
+* `node-restart`: restarts the ElasticSearch instance
+* `node-status`: displays ElasticSearch instance's status
+* `node-attach`: bring you to the screen session hosting the ElasticSearch instance. Use `^Ad` to detach.
 
-sudo screen -rx elastic
-```
 
 You should be brought to the screen session hosting ElasticSearch and see its log.
 
