@@ -2,6 +2,9 @@
 # Max VMs a user can launch
 CLUSTER_COUNT_MAX="5"
 
+# Base Box Name
+CLUSTER_BASE_BOX_NAME="ypereirareis/debian-elasticsearch-amd64"
+
 # Action user want to do
 CLUSTER_ACTION=$1
 
@@ -74,15 +77,6 @@ fi
 # ----------------------------------------------------------
 if [ $CLUSTER_ACTION == "remove" ]
 then
-  i="1"
-
-  while [ $i -le $CLUSTER_COUNT_MAX ]
-  do
-    echo "-------------------------------"
-    echo "  Removing box \"elasticsearch-node-${i}\""
-    echo "-------------------------------"
-    vagrant box remove elasticsearch-node-${i}
-    i=$[$i+1]
-  done
+  vagrant box remove $CLUSTER_BASE_BOX_NAME
 fi
 
