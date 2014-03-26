@@ -29,7 +29,7 @@ Requirements
 --
 
 * VirtualBox (last version)
-* Vagrant (last version)
+* Vagrant (>=1.5)
 
 
 **WARNING**
@@ -128,3 +128,10 @@ Use it to test every configuration/queries you want (split brain, unicast, recov
 ## Important
 
 Do forks and MRs !!!!
+
+## TODO
+
+* Adding data to test/execute queries (fuzzy, percolation, aggregations,...)
+* Adding extra plugins or applications (redis, logstash, kibana, ...)
+* Adding some configurations to illustrate split brain, unicast discovery, load balancing, snapshots,...
+* Sharing log configuration file just like elasticsearch.yml
