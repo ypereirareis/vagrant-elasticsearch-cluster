@@ -45,7 +45,7 @@ If you need or want to change the default working configuration of your cluster,
 you can do it editing elasticsearch.yml files in conf/vmX/elasticsearch.yml.
 Each node configuration is shared with VM thanks to this "conf" directory.
 
-ElasticSearch plugins installed inside the base box
+ElasticSearch plugins inside the base box
 --
 
 * elasticsearch-head - [https://github.com/mobz/elasticsearch-head](https://github.com/mobz/elasticsearch-head)
