@@ -1,9 +1,24 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+nodes_number = 5
+
+Dir.mkdir('.vagrant') unless Dir.exist?('.vagrant')
+if File.exist? '.vagrant/cluster'
+    nodes_number = (File.read '.vagrant/cluster').to_i 10
+end
+
+if ENV['CLUSTER_COUNT']
+    nodes_number = ENV['CLUSTER_COUNT'].to_i 10
+end
+
+File.open('.vagrant/cluster','w') do |file|
+    file.puts nodes_number.to_s
+end
+
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ypereirareis/debian-elasticsearch-amd64"
+  config.vm.box = 'ypereirareis/debian-elasticsearch-amd64'
   config.vm.synced_folder ".", "/vagrant", :id => "vagrant-root", :mount_options => ["dmode=777", "fmode=777"]
 
   config.vm.provider "virtualbox" do |vbox|
@@ -11,44 +26,18 @@ Vagrant.configure("2") do |config|
     vbox.customize ["modifyvm", :id, "--cpus", 1]
   end
 
-  config.vm.define :vm1, primary: true do |vm1|
-    vm1.vm.network "private_network", ip: "10.0.0.11", auto_config: true
-    vm1.vm.provision "shell" do |sh|
-      sh.path = "./scripts/start-node"
-      sh.args = "vm1"
-    end
-  end
+  (1..nodes_number).each do |index|
+      primary = (index.eql? 1)
+      ip = "10.0.0.#{10 + index}"
 
-  config.vm.define :vm2 do |vm2|
-    vm2.vm.network "private_network", ip: "10.0.0.12", auto_config: true
-    vm2.vm.provision "shell" do |sh|
-      sh.path = "./scripts/start-node"
-      sh.args = "vm2"
-    end
-  end
+      config.vm.define :"vm#{index}", primary: primary do |node|
+          node.vm.network 'private_network', ip: ip, auto_config: true
 
-  config.vm.define :vm3 do |vm3|
-    vm3.vm.network "private_network", ip: "10.0.0.13", auto_config: true
-    vm3.vm.provision "shell" do |sh|
-      sh.path = "./scripts/start-node"
-      sh.args = "vm3"
-    end
-  end
-
-  config.vm.define :vm4 do |vm4|
-    vm4.vm.network "private_network", ip: "10.0.0.14", auto_config: true
-    vm4.vm.provision "shell" do |sh|
-      sh.path = "./scripts/start-node"
-      sh.args = "vm4"
-    end
-  end
-
-  config.vm.define :vm5 do |vm5|
-    vm5.vm.network "private_network", ip: "10.0.0.15", auto_config: true
-    vm5.vm.provision "shell" do |sh|
-      sh.path = "./scripts/start-node"
-      sh.args = "vm5"
-    end
+          node.vm.provision 'shell' do |sh|
+              sh.path = 'scripts/start-node'
+              sh.args = "vm#{index}"
+          end
+      end
   end
 
 end
