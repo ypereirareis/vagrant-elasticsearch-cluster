@@ -116,7 +116,7 @@ Actually execute a loop of "vagrant destroy" command.
 ./scripts/vagrant-elasticsearch-cluster remove
 ```
 
-Actually execute a loop of "vagrant box remove" command.
+Actually execute a "vagrant box remove" command.
 
 6.Working with your cluster
 --
@@ -148,7 +148,7 @@ You can now perform any action/request authorized by elasticsearch API (index, g
 --
 
 You can use every vagrant command to manage your cluster and VMs.
-This project is simply made to launch a working elasticsearch cluster with a single command, using vagrant/virtualbox virtaul machines.
+This project is simply made to launch a working elasticsearch cluster with a single command, using vagrant/virtualbox virtual machines.
 
 Use it to test every configuration/queries you want (split brain, unicast, recovery, indexing, sharding)
 
