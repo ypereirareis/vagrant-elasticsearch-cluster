@@ -140,6 +140,19 @@ vagrant box remove ypereirareis/debian-elasticsearch-amd64
 
 This will remove your local copy of the vagrant base-box.
 
+
+**Debug ElasticSearch instances**
+
+Each VM has its own ElasticSearch instance running in a `screen` session named `elastic`. You can reattach this session at will using:
+
+```sh
+vagrant ssh vm1
+
+sudo screen -rx elastic
+```
+
+You should be brought to the screen session hosting ElasticSearch and see its log.
+
 6.Working with your cluster
 --
 
