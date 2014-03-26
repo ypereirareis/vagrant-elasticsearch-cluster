@@ -30,6 +30,7 @@ git clone git@github.com:ypereirareis/vagrant-elasticsearch-cluster.git
 
 * VirtualBox (last version)
 * Vagrant (>=1.5)
+* cUrl
 
 
 **WARNING**
@@ -115,26 +116,57 @@ Actually execute a loop of "vagrant destroy" command.
 ./scripts/vagrant-elasticsearch-cluster remove
 ```
 
-Actually execute a loop of "vagrant box remove" command.
+Actually execute a "vagrant box remove" command.
 
+6.Working with your cluster
+--
 
-6.Vagrant
+**Create a "subscriptions" index with 5 shards and 2 replicas**
+
+```
+curl -XPUT 'http://10.0.0.11:9200/subscriptions/' -d '{
+    "settings" : {
+        "number_of_shards" : 5,
+        "number_of_replicas" : 2
+    }
+}'
+```
+
+**Index a "subscription" document inside the "subscriptions" index**
+
+```
+curl -XPUT 'http://10.0.0.11:9200/subscriptions/subscription/1' -d '{
+    "user" : "ypereirareis",
+    "post_date" : "2014-03-26T14:12:12",
+    "message" : "Trying out vagrant elasticsearch cluster"
+}'
+```
+
+You can now perform any action/request authorized by elasticsearch API (index, get, delete, bulk,...)
+
+7.Vagrant
 --
 
 You can use every vagrant command to manage your cluster and VMs.
-This project is simply made to launch a working elasticsearch cluster with a single command, using vagrant/virtualbox virtaul machines.
+This project is simply made to launch a working elasticsearch cluster with a single command, using vagrant/virtualbox virtual machines.
 
 Use it to test every configuration/queries you want (split brain, unicast, recovery, indexing, sharding)
 
-7.Important
+8.Important
 --
 
-Do forks and MRs !!!!
+Do forks, PR, and MRs !!!!
 
-8.TODO
+9.TODO
 --
 
 * Adding data to test/execute queries (fuzzy, percolation, aggregations,...)
 * Adding extra plugins or applications (redis, logstash, kibana, ...)
 * Adding some configurations to illustrate split brain, unicast discovery, load balancing, snapshots,...
 * Sharing log configuration file just like elasticsearch.yml
+* Add a bash command to stop a specific node in the cluster
+* Add a bash command to add a new node in the cluster
+* Add a bash command to restart a specicif node
+* Add something to simulate a network failure to see what happens with nodes and cluster state
+* Add multiple nodes on the same VM to illustrate Rack configuration (shards/replicas on different "physical/virtual" machine)
+* Add existing contributors rivers (twitter, wikipédia, rss, ...)
