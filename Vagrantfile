@@ -35,17 +35,32 @@ module Vagrant
                 "vm#{index}"
             end
 
+            def get_vm_ip(index)
+                get_ip % (10 + index)
+            end
+
             def get_node_name(index)
                 @names[index - 1]
             end
 
-            def get_ip(index)
-                "10.0.0.#{10 + index}"
+            def get_ip
+                return ENV['CLUSTER_IP_PATTERN'] if ENV['CLUSTER_IP_PATTERN']
+                return (File.read '.vagrant/cluster_ip') if File.exist? '.vagrant/cluster_ip'
+
+                '10.0.0.%d'
+            end
+
+            def save_ip(pattern)
+                Dir.mkdir('.vagrant') unless Dir.exist?('.vagrant')
+
+                File.open('.vagrant/cluster_ip', 'w') do |file|
+                    file.puts pattern
+                end
             end
 
             def get_size
                 return ENV['CLUSTER_COUNT'].to_i 10 if ENV['CLUSTER_COUNT']
-                return (File.read '.vagrant/cluster').to_i 10 if File.exist? '.vagrant/cluster'
+                return (File.read '.vagrant/cluster_size').to_i 10 if File.exist? '.vagrant/cluster_size'
 
                 5
             end
@@ -70,9 +85,10 @@ module Vagrant
                 Dir.mkdir("conf/#{vm}") unless Dir.exist?("conf/#{vm}")
 
                 File.open("conf/#{vm}/elasticsearch.yml", 'w') do |file|
-                    @node_ip = get_ip index
+                    @node_ip = get_vm_ip index
                     @node_name = get_node_name index
                     @node_marvel_enabled = (index == 1)
+                    @cluster_ip = get_ip
 
                     @logger.info "Building configuration for #{vm}"
                     file.puts self.get_config_template.result(binding)
@@ -89,6 +105,9 @@ Vagrant.configure("2") do |config|
   utils.logger.info "Cluster size: #{nodes_number}"
   utils.save_size nodes_number
 
+  utils.logger.info "Cluster IP: #{utils.get_ip % 0}"
+  utils.save_ip utils.get_ip
+
   config.vm.box = 'ypereirareis/debian-elasticsearch-amd64'
   config.vm.synced_folder ".", "/vagrant", :id => "vagrant-root", :mount_options => ['dmode=777', 'fmode=777']
 
@@ -100,7 +119,7 @@ Vagrant.configure("2") do |config|
   (1..nodes_number).each do |index|
       name = utils.get_vm_name index
       primary = (index.eql? 1)
-      ip = utils.get_ip index
+      ip = utils.get_vm_ip index
 
       utils.build_config index
 
