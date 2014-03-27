@@ -125,11 +125,7 @@ Vagrant.configure("2") do |config|
 
       config.vm.define :"#{name}", primary: primary do |node|
           node.vm.network 'private_network', ip: ip, auto_config: true
-
-          node.vm.provision 'shell' do |sh|
-              sh.path = 'scripts/start-node'
-              sh.args = utils.get_vm_name index
-          end
+          node.vm.provision 'shell', inline: script % [name]
       end
   end
 end
