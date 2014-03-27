@@ -1,54 +1,98 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+require 'erb'
+
+module Vagrant
+    module ElastiSearchCluster
+        class Util
+            attr_accessor :logger
+
+            def initialize
+                @names = %w(thor zeus isis shifu baal)
+                @logger = Vagrant::UI::Colored.new
+                @logger.opts[:color] = :white
+            end
+
+            def get_vm_name(index)
+                "vm#{index}"
+            end
+
+            def get_node_name(index)
+                @names[index - 1]
+            end
+
+            def get_ip(index)
+                "10.0.0.#{10 + index}"
+            end
+
+            def get_size
+                return ENV['CLUSTER_COUNT'].to_i 10 if ENV['CLUSTER_COUNT']
+                return (File.read '.vagrant/cluster').to_i 10 if File.exist? '.vagrant/cluster'
+
+                5
+            end
+
+            def save_size(size)
+                Dir.mkdir('.vagrant') unless Dir.exist?('.vagrant')
+
+                File.open('.vagrant/cluster', 'w') do |file|
+                    file.puts size.to_s
+                end
+            end
+
+            def get_config_template
+                config_file = File.open('conf/elasticsearch.yml.erb', 'r')
+
+                ERB.new(config_file.read)
+            end
+
+            def build_config(index)
+                vm = get_vm_name index
+
+                Dir.mkdir("conf/#{vm}") unless Dir.exist?("conf/#{vm}")
+
+                File.open("conf/#{vm}/elasticsearch.yml", 'w') do |file|
+                    @node_ip = get_ip index
+                    @node_name = get_node_name index
+                    @node_marvel_enabled = (index == 1)
+
+                    @logger.info "Building configuration for #{vm}"
+                    file.puts self.get_config_template.result(binding)
+                end unless File.exist? "conf/#{vm}/elasticsearch.yml"
+            end
+        end
+    end
+end
+
+utils = Vagrant::ElastiSearchCluster::Util.new
 
 Vagrant.configure("2") do |config|
+  nodes_number = utils.get_size
+  utils.logger.info "Cluster size: #{nodes_number}"
+  utils.save_size nodes_number
 
-  config.vm.box = "ypereirareis/debian-elasticsearch-amd64"
-  config.vm.synced_folder ".", "/vagrant", :id => "vagrant-root", :mount_options => ["dmode=777", "fmode=777"]
+  config.vm.box = 'ypereirareis/debian-elasticsearch-amd64'
+  config.vm.synced_folder ".", "/vagrant", :id => "vagrant-root", :mount_options => ['dmode=777', 'fmode=777']
 
-  config.vm.provider "virtualbox" do |vbox|
-    vbox.customize ["modifyvm", :id, "--memory", 512]
-    vbox.customize ["modifyvm", :id, "--cpus", 1]
+  config.vm.provider 'virtualbox' do |vbox|
+    vbox.customize ['modifyvm', :id, '--memory', 512]
+    vbox.customize ['modifyvm', :id, '--cpus', 1]
   end
 
-  config.vm.define :vm1, primary: true do |vm1|
-    vm1.vm.network "private_network", ip: "10.0.0.11", auto_config: true
-    vm1.vm.provision "shell" do |sh|
-      sh.path = "./scripts/start-node"
-      sh.args = "vm1"
-    end
-  end
+  (1..nodes_number).each do |index|
+      name = utils.get_vm_name index
+      primary = (index.eql? 1)
+      ip = utils.get_ip index
 
-  config.vm.define :vm2 do |vm2|
-    vm2.vm.network "private_network", ip: "10.0.0.12", auto_config: true
-    vm2.vm.provision "shell" do |sh|
-      sh.path = "./scripts/start-node"
-      sh.args = "vm2"
-    end
-  end
+      utils.build_config index
 
-  config.vm.define :vm3 do |vm3|
-    vm3.vm.network "private_network", ip: "10.0.0.13", auto_config: true
-    vm3.vm.provision "shell" do |sh|
-      sh.path = "./scripts/start-node"
-      sh.args = "vm3"
-    end
-  end
+      config.vm.define :"#{name}", primary: primary do |node|
+          node.vm.network 'private_network', ip: ip, auto_config: true
 
-  config.vm.define :vm4 do |vm4|
-    vm4.vm.network "private_network", ip: "10.0.0.14", auto_config: true
-    vm4.vm.provision "shell" do |sh|
-      sh.path = "./scripts/start-node"
-      sh.args = "vm4"
-    end
+          node.vm.provision 'shell' do |sh|
+              sh.path = 'scripts/start-node'
+              sh.args = utils.get_vm_name index
+          end
+      end
   end
-
-  config.vm.define :vm5 do |vm5|
-    vm5.vm.network "private_network", ip: "10.0.0.15", auto_config: true
-    vm5.vm.provision "shell" do |sh|
-      sh.path = "./scripts/start-node"
-      sh.args = "vm5"
-    end
-  end
-
 end

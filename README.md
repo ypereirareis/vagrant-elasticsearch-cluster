@@ -61,8 +61,9 @@ Each node configuration is shared with VM thanks to this "conf" directory.
 **Important**
 
 The maximum number VMs running in the cluster is 5.
-Indeed, it would be possible to run much more than 5, but it's not really needed for a test environment cluster,
+Indeed, it is possible to run much more than 5, but it's not really needed for a test environment cluster,
 and the RAM needed would be much more important.
+If you still want to use more than 5 VMs, you will have to add your own configuration files in the [conf](conf) directory.
 
 **Run the cluster**
 
@@ -70,10 +71,21 @@ Simply go in the cloned directory (vagrant-elasticsearch-cluster by default).
 Execute this command :
 
 ```
-./scripts/vagrant-elasticsearch-cluster run N (N>=1, N<=5)
+vagrant up
 ```
 
-Actually execute a loop of "vagrant up" command.
+By default, this command will boot 5 VMs. You can change the cluster size with the `CLUSTER_COUNT` variable:
+
+```
+CLUSTER_COUNT=3 vagrant up
+```
+
+Providing the `CLUSTER_COUNT` variable is only required when your first start the cluster. Vagrant will save this
+value so you can run other commands without repeating yourself.
+
+The names of the VMs will follow the following pattern: `vm[0-9]+`.
+The trailing number represents the index of the VM, starting at 1.
+
 ElasticSearch instance is started during provisioning of the VM.
 The command is launched into a new screen as root inside the vagrant.
 
@@ -97,26 +109,36 @@ Plugins URLs :
 **Stop the cluster**
 
 ```
-./scripts/vagrant-elasticsearch-cluster stop
+vagrant halt
 ```
 
-Actually execute a loop of "vagrant halt" command.
+This will stop the whole cluster. If you want to only stop one VM, you can use:
+
+```
+vagrant halt vm2
+```
+
+This will stop the `vm2` instance.
 
 **Destroy the cluster**
 
 ```
-./scripts/vagrant-elasticsearch-cluster destroy
+vagrant destroy
 ```
 
-Actually execute a loop of "vagrant destroy" command.
+This will stop the whole cluster. If you want to only stop one VM, you can use:
+
+```
+vagrant destroy vm2
+```
 
 **Remove the cluster**
 
 ```
-./scripts/vagrant-elasticsearch-cluster remove
+vagrant box remove ypereirareis/debian-elasticsearch-amd64
 ```
 
-Actually execute a "vagrant box remove" command.
+This will remove your local copy of the vagrant base-box.
 
 6.Working with your cluster
 --
