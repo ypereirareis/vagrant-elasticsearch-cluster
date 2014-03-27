@@ -377,5 +377,4 @@ http.port: 9200
 #monitor.jvm.gc.old.debug: 2s
 
 marvel.agent.enabled: <%= @node_marvel_enabled %>
-marvel.agent.exporter.es.hosts: ["10.0.0.11:9200"]
-
+marvel.agent.exporter.es.hosts: ["<%= @cluster_ip % 11 %>:9200"]

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+INSTANCE=$(screen -li | grep elastic | sed 's/\s/ /g')
+
+if [ -z "$INSTANCE" ]
+then
+    echo "No running instance"
+else
+    echo $INSTANCE
+fi
