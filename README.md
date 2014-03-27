@@ -89,13 +89,6 @@ The trailing number represents the index of the VM, starting at 1.
 ElasticSearch instance is started during provisioning of the VM.
 The command is launched into a new screen as root inside the vagrant.
 
-File : scripts/start-node.sh
-
-```
-VM_NAME=$1
-screen -d -m /home/vagrant/elasticsearch-1.0.1/bin/elasticsearch -Des.config=/vagrant/conf/$VM_NAME/elasticsearch.yml
-```
-
 Once the cluster is launched go to [http://10.0.0.11:9200](http://10.0.0.11:9200)
 Plugins URLs :
 
@@ -152,8 +145,11 @@ Once connected to the VM, you can manage this instance with the following comman
 * `node-status`: displays ElasticSearch instance's status
 * `node-attach`: bring you to the screen session hosting the ElasticSearch instance. Use `^Ad` to detach.
 
-
 You should be brought to the screen session hosting ElasticSearch and see its log.
+
+The first launch of elasticsearch instance is done by vagrant provisionning.
+So you should prepend 'sudo' for each command above.
+But if you have the possibility to start an ES instance as 'vagrant' user from the VM.
 
 6.Working with your cluster
 --
@@ -197,13 +193,9 @@ Do forks, PR, and MRs !!!!
 9.TODO
 --
 
-* Adding data to test/execute queries (fuzzy, percolation, aggregations,...)
-* Adding extra plugins or applications (redis, logstash, kibana, ...)
+* Adding extra plugins or applications (elasticsearch-mapper-attachments, redis, logstash, kibana, ...)
 * Adding some configurations to illustrate split brain, unicast discovery, load balancing, snapshots,...
 * Sharing log configuration file just like elasticsearch.yml
-* Add a bash command to stop a specific node in the cluster
-* Add a bash command to add a new node in the cluster
-* Add a bash command to restart a specicif node
 * Add something to simulate a network failure to see what happens with nodes and cluster state
 * Add multiple nodes on the same VM to illustrate Rack configuration (shards/replicas on different "physical/virtual" machine)
 * Add existing contributors rivers (twitter, wikipédia, rss, ...)
