@@ -6,6 +6,8 @@ if [ -n "$INSTANCE" ]
 then
     echo "Already running: $INSTANCE"
 else
-    screen -S elastic -d -m bash -l -c "elasticsearch -Des.config=/vagrant/conf/$VM_NAME/elasticsearch.yml"
+    mkdir -p /vagrant/logs
+
+    screen -S elastic -d -m bash -l -c "elasticsearch -Des.config=/vagrant/conf/$VM_NAME/elasticsearch.yml > /vagrant/logs/$VM_NAME.log 2>&1"
     echo "Started $VM_NAME: $(screen -li | grep elastic | sed 's/\s/ /g')"
 fi
