@@ -12,7 +12,7 @@ vagrant up
 | program, plugin, lib    | version       |
 | ----------------------- | ------------- |
 | ElasticSearch           | 1.0.1         |
-| Java (openjdk-7-jre)    | openjdk-7-jre |
+| Java (openjdk-7-jre)    | 1.7.0_25      |
 
 
 **Cluster default configuration**
@@ -100,7 +100,7 @@ CLUSTER_COUNT=2 CLUSTER_IP_PATTERN='172.16.10.%d' vagrant up
 ```
 
 * This command will start 2 ES instances with IPs like : 172.16.10.11, 172.16.10.12.
-* :warning: Before that you must verify that config files (conf/vm*) do not exist or delete them.
+* :warning: Before that, you must verify that config files (conf/vm*) do not exist or delete them.
 * Indeed, this files need to be re-written.
 
 You will see this kind of shell :
