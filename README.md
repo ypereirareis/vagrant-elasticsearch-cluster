@@ -92,6 +92,7 @@ The default configuration (HTTP enabled for all nodes) allows you to use any of 
 If one (or more) of your nodes fails, try with another IP to see what happened.
 
 By default the cluster nodes have an IP following the pattern "10.0.0.%d" as you can see in [Vagrantfile](Vagrantfile).
+
 But you can change it using an ENV var :
 
 ```
@@ -99,7 +100,9 @@ CLUSTER_COUNT=2 CLUSTER_IP_PATTERN='172.16.10.%d' vagrant up
 ```
 
 This command will start 2 ES instances with IPs like : 172.16.10.11, 172.16.10.12.
+
 IMPORTANT !!! Before that you must verify that config files (conf/vm*) do not exist or delete them.
+
 Indeed, this files need to be re-written.
 
 you will see this kind of shell :
