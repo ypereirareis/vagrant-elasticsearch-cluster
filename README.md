@@ -100,6 +100,7 @@ CLUSTER_COUNT=2 CLUSTER_IP_PATTERN='172.16.10.%d' vagrant up
 
 This command will start 2 ES instances with IPs like : 172.16.10.11, 172.16.10.12.
 IMPORTANT !!! Before that you must verify that config files (conf/vm*) do not exist or delete them.
+Indeed, this files need to be re-written
 
 you will see this kind of shell :
 
@@ -112,7 +113,7 @@ Bringing machine 'vm2' up with 'virtualbox' provider...
 
 ```
 
-And you know access to nodes like taht : [http://172.16.10.11:9200](http://172.16.10.11:9200)
+And you know access to nodes like that : [http://172.16.10.11:9200](http://172.16.10.11:9200)
 
 **Stop the cluster**
 
@@ -148,7 +149,7 @@ vagrant box remove ypereirareis/debian-elasticsearch-amd64
 
 This will remove your local copy of the vagrant base-box.
 
-**If you destroy a VM, I suggest you to destroy all the cluster to be sure to have the same ES version in all of your nodes**
+:warning: If you destroy a VM, I suggest you to destroy all the cluster to be sure to have the same ES version in all of your nodes
 
 **Managing ElasticSearch instances**
 
