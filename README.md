@@ -9,10 +9,20 @@ vagrant up
 
 **Programs, plugins, libs and versions information**
 
-| program, plugin, lib    | version       |
-| ----------------------- | ------------- |
-| ElasticSearch           | 1.0.1         |
-| Java (openjdk-7-jre)    | 1.7.0_25      |
+| Program, plugin, lib              | Version     | How to use it                             |
+| --------------------------------- | ----------- | ----------------------------------------- |
+| ElasticSearch                     | 1.0.1       | [http://www.elasticsearch.org/guide/](http://www.elasticsearch.org/guide/) |
+| Java (openjdk-7-jre)              | 1.7.0_25    |                                           |
+| elasticsearch-image               | 1.2.0       | [https://github.com/kzwang/elasticsearch-image](https://github.com/kzwang/elasticsearch-image) |
+| elasticsearch-mapper-attachments  | 2.0.0       | [https://github.com/elasticsearch/elasticsearch-mapper-attachments](https://github.com/elasticsearch/elasticsearch-mapper-attachments) |
+| elasticsearch-transport-redis     | 2.0.0       | [https://github.com/kzwang/elasticsearch-transport-redis](https://github.com/kzwang/elasticsearch-transport-redis) |
+| elasticsearch-transport-thrift    | 2.0.0       | [https://github.com/elasticsearch/elasticsearch-transport-thrift](https://github.com/elasticsearch/elasticsearch-transport-thrift) |
+| elasticsearch-transport-memcached | 2.0.0       | [https://github.com/elasticsearch/elasticsearch-transport-memcached](https://github.com/elasticsearch/elasticsearch-transport-memcached) |
+| rssriver (david pilato)           | 0.2.0       | [http://www.pilato.fr/rssriver/](http://www.pilato.fr/rssriver/) |
+| elasticsearch-river-jdbc          | 1.0.0.2     | [https://github.com/jprante/elasticsearch-river-jdbc](https://github.com/jprante/elasticsearch-river-jdbc) |
+| elasticsearch-river-rabbitmq      | 2.0.0       | [https://github.com/elasticsearch/elasticsearch-river-rabbitmq](https://github.com/elasticsearch/elasticsearch-river-rabbitmq) |
+| elasticsearch-river-twitter       | 2.0.0       | [https://github.com/elasticsearch/elasticsearch-river-twitter](https://github.com/elasticsearch/elasticsearch-river-twitter) |
+| elasticsearch-river-wikipedia     | 2.0.0       | [https://github.com/elasticsearch/elasticsearch-river-wikipedia](https://github.com/elasticsearch/elasticsearch-river-wikipedia) |
 
 
 **Cluster default configuration**
