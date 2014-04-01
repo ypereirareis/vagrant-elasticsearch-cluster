@@ -8,6 +8,8 @@ then
     cat <<EOT >> /etc/profile.d/vagrant-elasticsearch-cluster.sh
 
 export VM_NAME=%s
+export VM_NODE_NAME=%s
+export VM_NODE_IP=%s
 export PATH=/vagrant/scripts:/home/vagrant/elasticsearch-1.0.1/bin:\\$PATH
 EOT
 
@@ -118,14 +120,15 @@ Vagrant.configure("2") do |config|
 
   (1..nodes_number).each do |index|
       name = utils.get_vm_name index
-      primary = (index.eql? 1)
+      node_name = utils.get_node_name index
       ip = utils.get_vm_ip index
+      primary = (index.eql? 1)
 
       utils.build_config index
 
       config.vm.define :"#{name}", primary: primary do |node|
           node.vm.network 'private_network', ip: ip, auto_config: true
-          node.vm.provision 'shell', inline: script % [name]
+          node.vm.provision 'shell', inline: script % [name, node_name, ip]
       end
   end
 end
