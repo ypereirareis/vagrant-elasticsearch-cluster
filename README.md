@@ -70,7 +70,7 @@ By default, this command will boot 5 VMs. You can change the cluster size with t
 CLUSTER_COUNT=3 vagrant up
 ```
 
-Providing the `CLUSTER_COUNT` variable is only required when your first start the cluster.
+Providing the `CLUSTER_COUNT` variable is only required when you first start the cluster.
 Vagrant will save/cache this value so you can run other commands without repeating yourself.
 
 The names of the VMs will follow the following pattern: `vm[0-9]+`.
@@ -89,7 +89,7 @@ Plugins URLs :
 * [http://10.0.0.11:9200/_plugin/HQ/](http://10.0.0.11:9200/_plugin/HQ/)
 
 The default configuration (HTTP enabled for all nodes) allows you to use any of your VM IPs.
-If one (or more) of your nodes fail, try with another IP to see what happened.
+If one (or more) of your nodes fails, try with another IP to see what happened.
 
 By default the cluster nodes have an IP following the pattern "10.0.0.%d" as you can see in [Vagrantfile](Vagrantfile).
 But you can change it using an ENV var :
@@ -100,7 +100,7 @@ CLUSTER_COUNT=2 CLUSTER_IP_PATTERN='172.16.10.%d' vagrant up
 
 This command will start 2 ES instances with IPs like : 172.16.10.11, 172.16.10.12.
 IMPORTANT !!! Before that you must verify that config files (conf/vm*) do not exist or delete them.
-Indeed, this files need to be re-written
+Indeed, this files need to be re-written.
 
 you will see this kind of shell :
 
@@ -149,7 +149,7 @@ vagrant box remove ypereirareis/debian-elasticsearch-amd64
 
 This will remove your local copy of the vagrant base-box.
 
-:warning: If you destroy a VM, I suggest you to destroy all the cluster to be sure to have the same ES version in all of your nodes
+:warning: If you destroy a VM, I suggest you to destroy all the cluster to be sure to have the same ES version in all of your nodes.
 
 **Managing ElasticSearch instances**
 
