@@ -105,7 +105,7 @@ IMPORTANT !!! Before that you must verify that config files (conf/vm*) do not ex
 
 Indeed, this files need to be re-written.
 
-you will see this kind of shell :
+You will see this kind of shell :
 
 ```
 $ CLUSTER_COUNT=2 CLUSTER_IP_PATTERN='172.16.10.%d' vagrant up
@@ -116,7 +116,7 @@ Bringing machine 'vm2' up with 'virtualbox' provider...
 
 ```
 
-And you know access to nodes like that : [http://172.16.10.11:9200](http://172.16.10.11:9200)
+And you now access to nodes like that : [http://172.16.10.11:9200](http://172.16.10.11:9200)
 
 **Stop the cluster**
 
@@ -168,7 +168,7 @@ Once connected to the VM, you can manage this instance with the following comman
 You should be brought to the screen session hosting ElasticSearch and see its log.
 
 The first launch of ES instance is done by vagrant provisionning.
-So you should prepend 'sudo' for each command above.
+So you should prepend `sudo` for each command above.
 But you have the possibility to start an ES instance as 'vagrant' user from the VM.
 
 ```
@@ -186,6 +186,7 @@ will stop the ES 'root-user' instance and will start a 'vagrant-user' ES instanc
 If you need or want to change the default working configuration of your cluster,
 you can do it adding/editing elasticsearch.yml files in conf/vmX/elasticsearch.yml.
 Each node configuration is shared with VM thanks to this "conf" directory.
+
 By default, this configuration files are **auto-generated** by Vagrant when running the cluster for the first time.
 In this case, default values listed at the top of this page are used.
 
