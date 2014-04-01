@@ -100,7 +100,7 @@ CLUSTER_COUNT=2 CLUSTER_IP_PATTERN='172.16.10.%d' vagrant up
 ```
 
 * This command will start 2 ES instances with IPs like : 172.16.10.11, 172.16.10.12.
-* !warning: Before that you must verify that config files (conf/vm*) do not exist or delete them.
+* :warning: Before that you must verify that config files (conf/vm*) do not exist or delete them.
 * Indeed, this files need to be re-written.
 
 You will see this kind of shell :
