@@ -70,7 +70,7 @@ module Vagrant
             def save_size(size)
                 Dir.mkdir('.vagrant') unless Dir.exist?('.vagrant')
 
-                File.open('.vagrant/cluster', 'w') do |file|
+                File.open('.vagrant/cluster_size', 'w') do |file|
                     file.puts size.to_s
                 end
             end
