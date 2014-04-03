@@ -249,7 +249,6 @@ Do forks, PR, and MRs !!!!
 8.TODO
 --
 
-* Adding extra plugins or applications (elasticsearch-mapper-attachments, redis, logstash, kibana, ...)
-* Adding some configurations to illustrate split brain, unicast discovery, load balancing, snapshots,...
-* Add multiple nodes on the same VM to illustrate Rack configuration (shards/replicas on different "physical/virtual" machine)
-* Add existing contributors rivers (twitter, wikipédia, rss, ...)
+* Add extra plugins or applications in the base box (redis, logstash, kibana, ...)
+* Add some configurations to illustrate split brain, unicast discovery, load balancing, snapshots, recovery...
+* Add possibility to configure cluster name, RAM per node AND hostnames through the shell (ENV vars)
