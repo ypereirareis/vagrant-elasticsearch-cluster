@@ -127,6 +127,7 @@ Vagrant.configure("2") do |config|
       utils.build_config index
 
       config.vm.define :"#{name}", primary: primary do |node|
+          node.vm.hostname = "#{node_name}.es.dev"
           node.vm.network 'private_network', ip: ip, auto_config: true
           node.vm.provision 'shell', inline: script % [name, node_name, ip]
       end
