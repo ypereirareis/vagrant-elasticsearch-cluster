@@ -60,9 +60,7 @@ module Vagrant
             def build_config(index)
                 vm = get_vm_name index
 
-                Dir.mkdir("conf/#{vm}") unless Dir.exist?("conf/#{vm}")
-
-                File.open("conf/#{vm}/elasticsearch.yml", 'w') do |file|
+                File.open("conf/elasticsearch-#{vm}.yml", 'w') do |file|
                     @node_ip = get_vm_ip index
                     @node_name = get_node_name index
                     @node_marvel_enabled = (index == 1)
@@ -70,7 +68,7 @@ module Vagrant
 
                     @logger.info "Building configuration for #{vm}"
                     file.puts self.get_config_template.result(binding)
-                end unless File.exist? "conf/#{vm}/elasticsearch.yml"
+                end unless File.exist? "conf/elasticsearch-#{vm}.yml"
             end
         end
     end

@@ -37,7 +37,7 @@ cluster.name: elasticsearch-cluster-test
 # Node names are generated dynamically on startup, so you're relieved
 # from configuring them manually. You can tie this node to a specific name:
 #
-node.name: "<%= @node_name %>"
+node.name: "<%= @node_name.strip %>"
 
 # Every node can be configured to allow or deny being eligible as the master,
 # and to allow or deny to store the data.
@@ -209,7 +209,7 @@ index.number_of_replicas: 2
 
 # Set both 'bind_host' and 'publish_host':
 #
-network.host: <%= @node_ip %>
+network.host: <%= @node_ip.strip %>
 
 # Set a custom port for the node to node communication (9300 by default):
 #
@@ -377,4 +377,5 @@ http.port: 9200
 #monitor.jvm.gc.old.debug: 2s
 
 marvel.agent.enabled: <%= @node_marvel_enabled %>
-marvel.agent.exporter.es.hosts: ["<%= @cluster_ip % 11 %>:9200"]
+marvel.agent.exporter.es.hosts: ["<%= @cluster_ip.strip % 11 %>:9200"]
+
