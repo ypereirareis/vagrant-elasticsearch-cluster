@@ -131,7 +131,7 @@ The command is launched into a new screen as root user inside the vagrant.
 
 Once the cluster is launched (please wait a few seconds) go to : [http://10.0.0.11:9200](http://10.0.0.11:9200)
 
-Plugins URLs :
+Plugins URLs (replace IP if you changed it with `CLUSTER_IP_PATTERN` var) :
 
 * [http://10.0.0.11:9200/_plugin/marvel](http://10.0.0.11:9200/_plugin/marvel)
 * [http://10.0.0.11:9200/_plugin/paramedic/](http://10.0.0.11:9200/_plugin/paramedic/)
