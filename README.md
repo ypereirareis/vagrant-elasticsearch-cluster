@@ -72,14 +72,56 @@ Execute this command :
 vagrant up
 ```
 
-By default, this command will boot 5 VMs. You can change the cluster size with the `CLUSTER_COUNT` variable:
+By default, this command will boot 5 VMs, with `My amazing ES cluster` name, `512M` of RAM for each node and this network ip address `10.0.0.0`.
+
+You can change the cluster size with the `CLUSTER_COUNT` variable:
 
 ```
 CLUSTER_COUNT=3 vagrant up
 ```
 
-Providing the `CLUSTER_COUNT` variable is only required when you first start the cluster.
-Vagrant will save/cache this value so you can run other commands without repeating yourself.
+You can change the cluster name with the `CLUSTER_NAME` variable:
+
+```
+CLUSTER_NAME='My awesome cluster' vagrant up
+```
+
+You can change the cluster RAM used for each node with the `CLUSTER_RAM` variable:
+
+```
+CLUSTER_RAM=1024 vagrant up
+```
+
+You can change the cluster network IP address with the `CLUSTER_IP_PATTERN` variable:
+
+```
+CLUSTER_IP_PATTERN='172.16.15.%d' vagrant up
+```
+
+Providing the `CLUSTER_NAME`, `CLUSTER_COUNT`, `CLUSTER_RAM`, `CLUSTER_IP_PATTERN` variables is only required when you first start the cluster.
+Vagrant will save/cache these values so you can run other commands without repeating yourself.
+
+Of course you can use all these variables at the same time :
+
+```
+$ CLUSTER_NAME='My awesome search engine' CLUSTER_IP_PATTERN='172.16.25.%d' CLUSTER_COUNT=3 CLUSTER_RAM=512 vagrant status
+----------------------------------------------------------
+          Your ES cluster configurations
+----------------------------------------------------------
+Cluster Name: My awesome search engine
+Cluster size: 3
+Cluster network IP: 172.16.25.0
+Cluster RAM (for each node): 512
+----------------------------------------------------------
+----------------------------------------------------------
+Current machine states:
+
+vm1                       not created (virtualbox)
+vm2                       not created (virtualbox)
+vm3                       not created (virtualbox)
+
+...
+```
 
 The names of the VMs will follow the following pattern: `vm[0-9]+`.
 The trailing number represents the index of the VM, starting at 1.
@@ -88,7 +130,8 @@ ElasticSearch instance is started during provisioning of the VM.
 The command is launched into a new screen as root user inside the vagrant.
 
 Once the cluster is launched (please wait a few seconds) go to : [http://10.0.0.11:9200](http://10.0.0.11:9200)
-Plugins URLs :
+
+Plugins URLs (replace IP if you changed it with `CLUSTER_IP_PATTERN` var) :
 
 * [http://10.0.0.11:9200/_plugin/marvel](http://10.0.0.11:9200/_plugin/marvel)
 * [http://10.0.0.11:9200/_plugin/paramedic/](http://10.0.0.11:9200/_plugin/paramedic/)
