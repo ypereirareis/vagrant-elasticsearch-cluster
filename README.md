@@ -130,6 +130,7 @@ ElasticSearch instance is started during provisioning of the VM.
 The command is launched into a new screen as root user inside the vagrant.
 
 Once the cluster is launched (please wait a few seconds) go to : [http://10.0.0.11:9200](http://10.0.0.11:9200)
+
 Plugins URLs :
 
 * [http://10.0.0.11:9200/_plugin/marvel](http://10.0.0.11:9200/_plugin/marvel)
