@@ -95,7 +95,7 @@ CLUSTER_RAM=1024 vagrant up
 You can change the cluster network IP address with the `CLUSTER_IP_PATTERN` variable:
 
 ```
-CLUSTER_IP_PATTERN='172.16.15%d' vagrant up
+CLUSTER_IP_PATTERN='172.16.15.%d' vagrant up
 ```
 
 Providing the `CLUSTER_NAME`, `CLUSTER_COUNT`, `CLUSTER_RAM`, `CLUSTER_IP_PATTERN` variables is only required when you first start the cluster.
