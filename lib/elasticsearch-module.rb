@@ -54,8 +54,6 @@ module Vagrant
                 File.open(conf_file_format, 'w') do |file|
                     @node_ip = get_vm_ip index
                     @node_name = get_node_name index
-                    @node_marvel_enabled = (index == 1)
-                    @cluster_ip = get_cluster_info 'cluster_ip'
                     @cluster_name = get_cluster_info 'cluster_name'
 
                     @logger.info "Building configuration for #{vm}"
