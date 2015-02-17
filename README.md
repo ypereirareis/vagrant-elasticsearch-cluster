@@ -13,15 +13,15 @@ vagrant up
 
 | Program, plugin, lib              | Version     | How to use it                             |
 | --------------------------------- | ----------- | ----------------------------------------- |
-| ElasticSearch                     | 1.0.1       | [http://www.elasticsearch.org/guide/](http://www.elasticsearch.org/guide/) |
+| ElasticSearch                     | 1.4.3       | [http://www.elasticsearch.org/guide/](http://www.elasticsearch.org/guide/) |
 | Java (openjdk-7-jre)              | 1.7.0_25    |                                           |
 | elasticsearch-image               | 1.2.0       | [https://github.com/kzwang/elasticsearch-image](https://github.com/kzwang/elasticsearch-image) |
-| elasticsearch-mapper-attachments  | 2.0.0       | [https://github.com/elasticsearch/elasticsearch-mapper-attachments](https://github.com/elasticsearch/elasticsearch-mapper-attachments) |
-| rssriver (david pilato)           | 0.2.0       | [http://www.pilato.fr/rssriver/](http://www.pilato.fr/rssriver/) |
-| elasticsearch-river-jdbc          | 1.0.0.2     | [https://github.com/jprante/elasticsearch-river-jdbc](https://github.com/jprante/elasticsearch-river-jdbc) |
-| elasticsearch-river-rabbitmq      | 2.0.0       | [https://github.com/elasticsearch/elasticsearch-river-rabbitmq](https://github.com/elasticsearch/elasticsearch-river-rabbitmq) |
-| elasticsearch-river-twitter       | 2.0.0       | [https://github.com/elasticsearch/elasticsearch-river-twitter](https://github.com/elasticsearch/elasticsearch-river-twitter) |
-| elasticsearch-river-wikipedia     | 2.0.0       | [https://github.com/elasticsearch/elasticsearch-river-wikipedia](https://github.com/elasticsearch/elasticsearch-river-wikipedia) |
+| elasticsearch-mapper-attachments  | 2.4.2       | [https://github.com/elasticsearch/elasticsearch-mapper-attachments](https://github.com/elasticsearch/elasticsearch-mapper-attachments) |
+| rssriver (david pilato)           | 1.3.0       | [http://www.pilato.fr/rssriver/](http://www.pilato.fr/rssriver/) |
+| elasticsearch-river-jdbc          | 1.4.0.9     | [https://github.com/jprante/elasticsearch-river-jdbc](https://github.com/jprante/elasticsearch-river-jdbc) |
+| elasticsearch-river-rabbitmq      | 2.4.1       | [https://github.com/elasticsearch/elasticsearch-river-rabbitmq](https://github.com/elasticsearch/elasticsearch-river-rabbitmq) |
+| elasticsearch-river-twitter       | 2.4.2       | [https://github.com/elasticsearch/elasticsearch-river-twitter](https://github.com/elasticsearch/elasticsearch-river-twitter) |
+| elasticsearch-river-wikipedia     | 2.4.1       | [https://github.com/elasticsearch/elasticsearch-river-wikipedia](https://github.com/elasticsearch/elasticsearch-river-wikipedia) |
 
 This plugins are just installed through the `bin/plugin -i` command. You must configure everything else.
 
