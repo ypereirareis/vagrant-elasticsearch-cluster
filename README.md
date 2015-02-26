@@ -23,7 +23,7 @@ vagrant up
 | elasticsearch-river-twitter       | 2.4.2       | [https://github.com/elasticsearch/elasticsearch-river-twitter](https://github.com/elasticsearch/elasticsearch-river-twitter) |
 | elasticsearch-river-wikipedia     | 2.4.1       | [https://github.com/elasticsearch/elasticsearch-river-wikipedia](https://github.com/elasticsearch/elasticsearch-river-wikipedia) |
 
-This plugins are just installed through the `bin/plugin -i` command. You must configure everything else.
+These plugins are just installed through the `bin/plugin -i` command. You must configure everything else.
 
 **Cluster default configuration**
 
